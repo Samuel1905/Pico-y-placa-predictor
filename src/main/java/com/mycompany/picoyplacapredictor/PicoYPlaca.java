@@ -9,19 +9,27 @@ import java.time.format.DateTimeFormatter;
  * @author User
  */
 public class PicoYPlaca {
-    // Nethods
-    public boolean PicoYPlaca(String licensePlate, String dateStr, String timeStr) {
-        int lastDigit = Character.getNumericValue(licensePlate.charAt(licensePlate.length() - 1));
-        LocalDate date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalTime time = LocalTime.parse(timeStr, DateTimeFormatter.ofPattern("HH:mm"));
+    //atributes
+    private int lastDigit;
+    private LocalDate date;
+    private LocalTime time;
+    
+    
+    // Constructor 
+    public PicoYPlaca(String licensePlate, String dateStr, String timeStr) {
+        this.lastDigit = Character.getNumericValue(licensePlate.charAt(licensePlate.length() - 1));
+        this.date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.time = LocalTime.parse(timeStr, DateTimeFormatter.ofPattern("HH:mm"));
         
-        if (isRestrictedDate(lastDigit, date) && isRestrictedTime(time)) {
-            return false;
-        }
-        return true;
     }
     
-    private boolean isRestrictedDate(int lastDigit, LocalDate date) {
+    // Methods
+    // Public method to check if the vehicle can drive
+    public boolean canDrive() {
+        return !(isRestrictedDate() && isRestrictedTime());
+    }
+    
+    private boolean isRestrictedDate() {
         DayOfWeek dayofWeek = date.getDayOfWeek();
         boolean canDrive = false;
         
@@ -51,11 +59,12 @@ public class PicoYPlaca {
                     canDrive = true;
                 }
             }
+            default -> canDrive= false;
         }
         return canDrive;
     }
     
-    private boolean isRestrictedTime(LocalTime time) {
+    private boolean isRestrictedTime() {
         return (time.isAfter(LocalTime.of(6, 59)) && time.isBefore(LocalTime.of(9, 31))) ||
                (time.isAfter(LocalTime.of(15, 59)) && time.isBefore(LocalTime.of(19, 31)));
     }
