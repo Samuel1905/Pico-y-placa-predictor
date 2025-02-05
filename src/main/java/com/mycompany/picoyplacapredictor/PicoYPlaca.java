@@ -47,8 +47,7 @@ public class PicoYPlaca {
                 (lastDigit == 7 || lastDigit == 8);
             case FRIDAY ->
                 (lastDigit == 9 || lastDigit == 0);
-            default ->
-                false;
+            default ->false;
         };
     }
 
