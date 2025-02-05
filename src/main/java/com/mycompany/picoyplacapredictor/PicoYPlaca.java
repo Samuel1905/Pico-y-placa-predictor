@@ -21,5 +21,39 @@ public class PicoYPlaca {
         return true;
     }
     
+    private boolean isRestrictedDate(int lastDigit, LocalDate date) {
+        DayOfWeek dayofWeek = date.getDayOfWeek();
+        boolean canDrive = false;
+        
+        switch (dayofWeek) {
+            case MONDAY -> {
+                 if(lastDigit == 1 || lastDigit == 2){
+                     canDrive = true;
+                 } 
+            }
+            case TUESDAY -> {
+                if (lastDigit == 3 || lastDigit == 4) {
+                    canDrive = true;
+                }
+            }
+            case WEDNESDAY -> {
+                if (lastDigit == 5 || lastDigit == 6) {
+                    canDrive = true;
+                }
+            }
+            case THURSDAY -> {
+                if (lastDigit == 7 || lastDigit == 8) {
+                    canDrive = true;
+                }
+            }
+            case FRIDAY -> {
+                if (lastDigit == 9 || lastDigit == 0) {
+                    canDrive = true;
+                }
+            }
+        }
+        return canDrive;
+    }
+    
     
 }
