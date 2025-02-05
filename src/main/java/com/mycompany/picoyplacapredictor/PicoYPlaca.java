@@ -55,5 +55,9 @@ public class PicoYPlaca {
         return canDrive;
     }
     
-    
+    private boolean isRestrictedTime(LocalTime time) {
+        return (time.isAfter(LocalTime.of(6, 59)) && time.isBefore(LocalTime.of(9, 31))) ||
+               (time.isAfter(LocalTime.of(15, 59)) && time.isBefore(LocalTime.of(19, 31)));
+    }
+      
 }
