@@ -18,15 +18,18 @@ public class PicoYPlaca {
 
     // Constructor 
     public PicoYPlaca(String licensePlate, String dateStr, String timeStr) {
-        lastDigit = Character.getNumericValue(licensePlate.charAt(licensePlate.length() - 1));
-        date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        time = LocalTime.parse(timeStr, DateTimeFormatter.ofPattern("HH:mm"));
+        this.lastDigit = Character.getNumericValue(licensePlate.charAt(licensePlate.length() - 1));
+        this.date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.time = LocalTime.parse(timeStr, DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     // Methods
     // Method to check if a car can be on the road
     public boolean canBeOntheRoad() {
-        return !(isRestrictedDate() && isRestrictedTime());
+        if (isRestrictedDate() && isRestrictedTime()){
+            return false;
+        }
+        return true;
     }
 
     // Method to check restricted day of the week
