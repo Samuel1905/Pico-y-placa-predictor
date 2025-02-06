@@ -3,8 +3,9 @@
 This is a Java-based "Pico y Placa" predictor that determines whether a car can be on the road based on its license plate number, date, and time.
 
 ## Features
-* Validates vehicle restrictions based on the last digit of the license plate.
-* Checks if the given time match within restricted hours or if date match with a day of the week.
+* Validates car restrictions based on the last digit of the license plate.
+* Checks if the given time match within restricted hours.
+* Checks if the last digit match within restricted day of the week.
 
 ## Setup & Installation
 Prerequisites:
